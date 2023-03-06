@@ -1,0 +1,54 @@
+<Microsoft.AspNetCore.Components.Forms.InputFile OnChange="@LoadFiles" class="form-control" accept=".png,.jpg,.jpeg" />
+
+@if (errors.Count > 0)
+{
+    <h2>Errors</h2>
+    <ul class="text-danger">
+        @foreach (var error in errors)
+        {
+            <li>@error</li>
+        }
+    </ul>
+}
+
+@code{
+    private long maxFileSize = 1024 * 1024 * 3;
+    private int maxAllowedFiles = 1;
+    private List<string> errors = new();
+
+    private async Task LoadFiles(Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs e)
+    {
+        
+        errors.Clear();
+
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+                string newFileName = "img.PNG";
+                string path = Path.Combine(
+                    config.GetValue<string>("FileStorage")!,
+                    "img",
+                    newFileName);
+
+                Directory.CreateDirectory(Path.Combine(
+                    config.GetValue<string>("FileStorage")!,
+                    "img"));
+
+
+                await using FileStream fs = new(path, FileMode.Create);
+                await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+                
+            }
+            catch (Exception ex)
+            {
+                errors.Add($"File: {file.Name} Error: {ex.Message}");
+            }
+
+            
+        }
+        
+        
+    }
+}
