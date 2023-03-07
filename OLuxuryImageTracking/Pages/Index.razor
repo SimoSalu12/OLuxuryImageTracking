@@ -1,0 +1,148 @@
+﻿@page "/"
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@using Microsoft.Extensions.Logging
+@using System.Net.Http.Headers;
+@using Microsoft.AspNetCore.Components.Forms
+@inject IHttpClientFactory ClientFactory;
+@inject IConfiguration config
+
+
+@code{
+    private IEnumerable<Object> branches = Array.Empty<Object>();
+    bool errorSearch = false;
+    bool searched = false;
+    int i = 0;
+    string s = "SEARCH";
+
+    public async void GetSpecificationAsync()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Post, "https://api.api-ninjas.com/v1/objectdetection");
+        request.Headers.Add("X-Api-Key", "UbvBh447gr6NFwFBHNtn0Q==mYEhB60t42JV8loH");
+
+        var client = ClientFactory.CreateClient();
+
+        using (var multipartFormContent = new MultipartFormDataContent())
+        {
+            var filePath = "wwwroot/img/img.PNG";
+
+            var fileStreamContent = new StreamContent(File.OpenRead(filePath));
+            fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+
+            multipartFormContent.Add(fileStreamContent, name: "image", fileName: "img.png");
+            request.Content = multipartFormContent;
+
+            var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                using var responseStream = await response.Content.ReadAsStreamAsync();
+                branches = await JsonSerializer.DeserializeAsync<IEnumerable<Object>>(responseStream);
+                searched = true;
+            }
+            else
+            {
+                errorSearch = true;
+            }
+        }
+    }
+    public class Object
+    {
+        [JsonPropertyName("label")]
+        public string Label { get; set; }
+
+        [JsonPropertyName("confidence")]
+        public string confidence { get; set; }
+    }
+
+    
+}
+
+
+@code{
+    public void click()
+    {
+        if (i == 0)
+        {
+            i = 1;
+            s = "VIEW";
+            GetSpecificationAsync();
+        } else
+        {
+            i = 0;
+            s = "SEARCH";
+        }
+    }
+
+}
+<table width="auto" border="1" align="center" style="vertical-align:middle">
+    <tr>
+        <td>
+            <div>
+                <InputFile OnChange="@LoadFiles" accept=".png,.jpg,.jpeg" />
+            </div>
+                <img src="@imgsrc" width="auto" height="300" />
+            <div>
+                
+            </div>
+            <div>
+                <button @onclick="(()=>click())">@s</button>
+            </div>
+            @if (searched == true)
+            {
+                if (errorSearch == false)
+                {
+                    <p>LABEL: @branches.FirstOrDefault().Label</p>
+                    <p>Confidence: @branches.FirstOrDefault().confidence</p>
+                }
+            }
+        </td>
+    </tr>
+    
+</table>
+
+@code {
+    string imgsrc = "img/img.PNG";
+    byte[] _fyleBytes;
+    private long maxFileSize = 2000 * 2000 * 3;
+    private int maxAllowedFiles = 1;
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+                string newFileName = "img.PNG";
+                string path = Path.Combine(
+                    config.GetValue<string>("FileStorage")!,
+                    "img",
+                    newFileName);
+
+                Directory.CreateDirectory(Path.Combine(
+                    config.GetValue<string>("FileStorage")!,
+                    "img"));
+
+
+                await using FileStream fs = new(path, FileMode.Create);
+                await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+                var ms = new MemoryStream();
+                await file.OpenReadStream(maxFileSize).CopyToAsync(ms);
+                _fyleBytes = ms.ToArray();
+                var photo = Convert.ToBase64String(_fyleBytes);
+                imgsrc = string.Format("data:image/png;base64," + photo);
+                /*byte[] s = br.ReadBytes()
+                imgsrc = string.Format("data:image/png;base64," + s);*/
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+
+        }
+
+
+    }
+}
