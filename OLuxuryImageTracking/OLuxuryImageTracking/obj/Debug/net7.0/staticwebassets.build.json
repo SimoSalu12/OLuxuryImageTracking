@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "Hash": "I+AnlxKiC4f5hBadIRRkL3aGGXSne8VgNJLu6y3z5OA=",
+  "Source": "OLuxuryImageTracking",
+  "BasePath": "_content/OLuxuryImageTracking",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "OLuxuryImageTracking\\wwwroot",
+      "Source": "OLuxuryImageTracking",
+      "ContentRoot": "C:\\Users\\ssallucci\\source\\repos\\OLuxuryImageTracking\\OLuxuryImageTracking\\wwwroot\\",
+      "BasePath": "_content/OLuxuryImageTracking",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\ssallucci\\.nuget\\packages\\blazorinputfile\\0.2.0\\staticwebassets\\inputfile.js",
+      "SourceId": "BlazorInputFile",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\ssallucci\\.nuget\\packages\\blazorinputfile\\0.2.0\\staticwebassets\\",
+      "BasePath": "_content/BlazorInputFile",
+      "RelativePath": "inputfile.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\ssallucci\\.nuget\\packages\\blazorinputfile\\0.2.0\\staticwebassets\\inputfile.js"
+    },
+    {
+      "Identity": "C:\\Users\\ssallucci\\source\\repos\\OLuxuryImageTracking\\OLuxuryImageTracking\\wwwroot\\css\\site.css",
+      "SourceId": "OLuxuryImageTracking",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ssallucci\\source\\repos\\OLuxuryImageTracking\\OLuxuryImageTracking\\wwwroot\\",
+      "BasePath": "_content/OLuxuryImageTracking",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\ssallucci\\source\\repos\\OLuxuryImageTracking\\OLuxuryImageTracking\\wwwroot\\img\\img.PNG",
+      "SourceId": "OLuxuryImageTracking",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ssallucci\\source\\repos\\OLuxuryImageTracking\\OLuxuryImageTracking\\wwwroot\\",
+      "BasePath": "_content/OLuxuryImageTracking",
+      "RelativePath": "img/img.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\img.PNG"
+    }
+  ]
+}

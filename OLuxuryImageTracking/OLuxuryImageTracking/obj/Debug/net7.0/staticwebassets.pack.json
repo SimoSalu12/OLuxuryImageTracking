@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ssallucci\\source\\repos\\OLuxuryImageTracking\\OLuxuryImageTracking\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\ssallucci\\source\\repos\\OLuxuryImageTracking\\OLuxuryImageTracking\\wwwroot\\img\\img.PNG",
+      "PackagePath": "staticwebassets\\img\\img.PNG"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.OLuxuryImageTracking.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.OLuxuryImageTracking.props",
+      "PackagePath": "build\\OLuxuryImageTracking.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.OLuxuryImageTracking.props",
+      "PackagePath": "buildMultiTargeting\\OLuxuryImageTracking.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.OLuxuryImageTracking.props",
+      "PackagePath": "buildTransitive\\OLuxuryImageTracking.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
