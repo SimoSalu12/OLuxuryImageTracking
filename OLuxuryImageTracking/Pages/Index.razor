@@ -1,4 +1,4 @@
-﻿@page "/"
+@page "/"
 @using System.Text.Json
 @using System.Text.Json.Serialization
 @using Microsoft.Extensions.Logging
@@ -79,25 +79,33 @@
     <tr>
         <td>
             <div>
-                <InputFile OnChange="@LoadFiles" accept=".png,.jpg,.jpeg" />
+                <InputFile OnChange="@LoadFiles"  accept=".png,.jpg,.jpeg" />
             </div>
                 <img src="@imgsrc" width="auto" height="300" />
             <div>
                 
             </div>
-            <div>
-                <button @onclick="(()=>click())">@s</button>
+            <div align="center">
+                <button class="btn-css" @onclick="(()=>click())"><center>@s</center></button>
             </div>
-            @if (searched == true)
-            {
-                if (errorSearch == false)
-                {
-                    <p>LABEL: @branches.FirstOrDefault().Label</p>
-                    <p>Confidence: @branches.FirstOrDefault().confidence</p>
-                }
-            }
+            
         </td>
+        
     </tr>
+    @if (searched == true)
+    {
+        if (errorSearch == false)
+        {
+            <tr>
+                <td>
+                    <h3><center>LABEL: @branches.FirstOrDefault().Label</center></h3>
+                    <h3><center>Confidence: @branches.FirstOrDefault().confidence</center></h3>
+                </td>
+            </tr>
+        }
+    }
+            
+
     
 </table>
 
